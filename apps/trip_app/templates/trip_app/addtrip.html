@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Trip</title>
+</head>
+<body>
+    <h2> Add a Trip </h2>
+
+    <form action="/add" method="post">
+        {%csrf_token%}
+        {%if messages%} {% for message in messages %}
+                <h3> {{message}}</h3>
+                {% endfor %} {% endif %}
+
+    Destination: <input type="text" name="destination"><br/><br/>
+    Description: <input type="text" name="description"><br/><br/>
+    Travel From: <input type="date" name="start_date"><br/><br/>
+    Travel To:&nbsp;&nbsp;&nbsp;&nbsp; <input type="date" name="end_date"><br/><br/>
+
+    <input type="submit" value="Add"><br/><br/>
+    </form>
+
+    
+    <form action='/home' method="post">
+        {%csrf_token%}
+    <input type="submit" value="home">
+    </form>
+    <br/><br/>
+    <form action='/logout' method="post">
+        {%csrf_token%}
+    <input type="submit" value="logout">
+    </form>
+</body>
+</html>

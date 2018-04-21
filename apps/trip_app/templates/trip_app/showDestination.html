@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Destination Details</title>
+</head>
+<body>
+   
+    
+        <h2>{{things.destination}}</h2>
+        <h4>Description : </h4><span> {{things.plan}}</span>
+        <h4>Travel Date From : </h4><span>{{things.start_date}}</span>
+        <h4>Travel Date To : </h4><span>{{things.end_date}}</span>
+        <h4>Created By : </h4><span>{{things.owner.first_name}}</span>
+
+
+    <h2>People in this Trip</h2>
+    {%for item in people%}
+        {{item.first_name}}
+    {%endfor%}
+
+    <form action='/home' method="post">
+        {%csrf_token%}
+    <input type="submit" value="home">
+    </form>
+    <br/><br/>
+    <form action='/logout' method="post">
+        {%csrf_token%}
+    <input type="submit" value="logout">
+    </form>
+</body>
+</html>

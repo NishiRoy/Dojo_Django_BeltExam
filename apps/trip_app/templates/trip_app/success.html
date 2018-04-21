@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Success</title>
+    <style>
+        tr:nth-child(even) {background: #CCC}
+        tr:nth-child(odd) {background: #FFF}
+
+        table{
+            border:#CCC 2px solid;
+        }
+
+    </style>
+</head>
+<body>
+    <h3>Welcome {{name}} </h3> 
+    <div class="myTrips">
+        <h2>Your Trip Schedules</h2>
+       
+        <table>
+            <tr>
+                <td>Destination</td>
+                <td>Travel Start Date</td>
+                <td>Travel End Date</td>
+                <td>Plan </td>
+            </tr>
+            {% for item in plans%}
+            <tr>
+                    <td><a href="/destination/{{item.id}}">{{item.destination}}</a></td>
+                    <td> {{item.start_date}}</td>
+                    <td> {{item.end_date}}</td>
+                    <td>{{item.plan}}</td>
+                </tr>
+                    {%endfor%}
+           
+    </table>
+    </div>
+    <div class="unjoinedTrips">
+            <h2>Other User's Travel Plans</h2>
+           
+            <table>
+                <tr>
+                    <td>Created By</td>
+                    <td>Destination</td>
+                    <td>Travel Start Date</td>
+                    <td>Travel End Date</td>
+                    <td>Join </td>
+
+                </tr>
+                {% for val in unjoinedPlans%}
+                <tr>
+                        <td>{{val.owner.first_name}}</td>
+                        <td><a href="/destination/{{val.id}}">{{val.destination}}</a></td>
+                        <td> {{val.start_date}}</td>
+                        <td> {{val.end_date}}</td>
+                        <td>{{val.plan}}</td>
+                        <td><a href="/join/{{val.id}}">Join</a></td>
+                    </tr>
+          
+            {%endfor%}
+        </table>
+        </div>
+        <br/><br/><br/>
+        <form action='/addTrip' method="post">
+            {%csrf_token%}
+        <input type="submit" value="Add Travel Plan">
+        </form>
+        <br/><br/>
+        <form action='/logout' method="post">
+            {%csrf_token%}
+        <input type="submit" value="logout">
+        </form>
+</body>
+</html>
